@@ -27,7 +27,7 @@ def predict_iris():
     """Predict the IRIS species
     This is using docstrings for specifications.
     ---
-    parameters:  
+    parameters:
       - name: sepal_length
         in: query
         type: number
@@ -52,17 +52,17 @@ def predict_iris():
     sepal_width = request.args.get("sepal_width")
     petal_length = request.args.get("petal_length")
     petal_width = request.args.get("petal_width")
-    
     if not all([sepal_length, sepal_width, petal_length, petal_width]):
         return "Error: Missing one or more required parameters", 400
-    
+
     features = np.array([[float(sepal_length),
-                float(sepal_width), float(petal_length), float(petal_width)]])
+                          float(sepal_width), float(petal_length),
+                          float(petal_width)]])
     prediction = classifier.predict(features)
     species = ['setosa', 'versicolor', 'virginica']
     predicted_species = species[prediction[0]]
-    
     return f"The predicted species is {predicted_species}"
+
 
 @app.route('/predict_file', methods=["POST"])
 def predict_iris_file():
@@ -82,8 +82,8 @@ def predict_iris_file():
     predictions = classifier.predict(df_test)
     species = ['setosa', 'versicolor', 'virginica']
     predicted_species = [species[pred] for pred in predictions]
-    
     return str(predicted_species)
+
 
 if __name__ == '__main__':
     if classifier:
