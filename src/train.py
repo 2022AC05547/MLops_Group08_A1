@@ -1,12 +1,12 @@
 # src/train.py
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-import joblib
+from sklearn.ensemble import RandomForestClassifier
+import pickle
 import os
 
 dirname = os.path.dirname(__file__)
-filename = os.path.join(dirname, '../model/logistic_regression_model.pkl')
+filename = os.path.join(dirname, '../model/knn_irish_model.pkl')
 
 
 def train():
@@ -19,7 +19,7 @@ def train():
                             X, y, test_size=0.2, random_state=42)
 
     # Create and train the model
-    model = LogisticRegression(max_iter=200)
+    model = RandomForestClassifier(n_estimators=100, random_state=42)
     model.fit(X_train, y_train)
 
     # Evaluate the model
@@ -27,8 +27,8 @@ def train():
     print(f"Model accuracy: {accuracy:.2f}")
 
     # Save the trained model
-    os.makedirs("model", exist_ok=True)
-    joblib.dump(model, filename)
+    with open(filename, 'wb') as model_file:
+        pickle.dump(model, model_file)
 
     print("Model training complete and saved")
 

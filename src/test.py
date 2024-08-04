@@ -3,21 +3,22 @@
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-import joblib
+import pickle
 import os
 
 dirname = os.path.dirname(__file__)
-model_path = os.path.join(dirname, '../model/logistic_regression_model.pkl')
+model_file = os.path.join(dirname, '../model/knn_irish_model.pkl')
 
 
 def test_model():
     # Check if the model file exists
 
-    if not os.path.exists(model_path):
+    if not os.path.exists(model_file):
         raise FileNotFoundError(f"Model file not found at {model_path}")
 
     # Load the saved model
-    model = joblib.load(model_path)
+    with open(model_file, 'rb') as modelfile:
+        model = pickle.load(modelfile)
 
     # Load the iris dataset
     iris = load_iris()

@@ -2,3 +2,5 @@ flake8
 pytest
 scikit-learn
 joblib
+flask
+flasgger

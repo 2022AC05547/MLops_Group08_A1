@@ -15,7 +15,7 @@ sys.path.insert(
 def test_train():
     """Test the training function."""
     # Ensure the model directory does not exist before training
-    model_path = "model/logistic_regression_model.pkl"
+    model_path = "model/knn_irish_model.pkl"
     if os.path.exists(model_path):
         os.remove(model_path)
 
