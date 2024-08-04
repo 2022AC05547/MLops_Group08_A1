@@ -2,7 +2,6 @@ from flask import Flask, request
 import numpy as np
 import pickle
 import pandas as pd
-import flasgger
 from flasgger import Swagger
 import os
 app = Flask(__name__)
@@ -17,9 +16,11 @@ except Exception as e:
     print(f"Error loading model: {e}")
     classifier = None
 
+
 @app.route('/')
 def welcome():
     return "Welcome to the IRIS Prediction API!"
+
 
 @app.route('/predict', methods=["GET"])
 def predict_iris():
@@ -55,7 +56,8 @@ def predict_iris():
     if not all([sepal_length, sepal_width, petal_length, petal_width]):
         return "Error: Missing one or more required parameters", 400
     
-    features = np.array([[float(sepal_length), float(sepal_width), float(petal_length), float(petal_width)]])
+    features = np.array([[float(sepal_length),
+                float(sepal_width), float(petal_length), float(petal_width)]])
     prediction = classifier.predict(features)
     species = ['setosa', 'versicolor', 'virginica']
     predicted_species = species[prediction[0]]

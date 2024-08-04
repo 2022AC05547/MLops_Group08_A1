@@ -14,7 +14,7 @@ def test_model():
     # Check if the model file exists
 
     if not os.path.exists(model_file):
-        raise FileNotFoundError(f"Model file not found at {model_path}")
+        raise FileNotFoundError(f"Model file not found at {model_file}")
 
     # Load the saved model
     with open(model_file, 'rb') as modelfile:
