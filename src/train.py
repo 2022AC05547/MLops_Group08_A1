@@ -30,7 +30,7 @@ def train():
     with open(filename, 'wb') as model_file:
         pickle.dump(model, model_file)
 
-    print("Model training complete and saved")
+    print("housing_price_prediction_ml_implementation.py")
 
 
 if __name__ == "__main__":
